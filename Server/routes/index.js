@@ -1,4 +1,6 @@
-const note_routes = require("./users");
+const users_routes = require("./users");
+const shops_routes = require("./shops");
 module.exports = function(app, db) {
-  note_routes(app, db);
+    users_routes(app, db);
+    shops_routes(app, db);
 };
