@@ -1,24 +1,28 @@
-import { LOGIN, LOGIN_FAIL, LOGIN_LOADING } from "../Actions/login";
+import {
+  FETCH_SHOPS,
+  FETCH_SHOPS_LOADING,
+  FETCH_SHOPS_FAIL
+} from "../Actions/shops";
 
-let init_state_login= {
+let init_state_shops = {
   loading: false,
   failed: false,
   payload: []
 };
 
-export const login = (state = init_state_login, action) => {
+export const shops = (state = init_state_shops, action) => {
   switch (action.type) {
-    case LOGIN:
+    case FETCH_SHOPS:
       return Object.assign({}, state, {
         payload: action.payload
       });
-    case LOGIN_FAIL:
+    case FETCH_SHOPS_LOADING:
       return Object.assign({}, state, {
         loading: action.loading
       });
-    case LOGIN_LOADING:
+    case FETCH_SHOPS_FAIL:
       return Object.assign({}, state, {
-        failed: action.failed
+        failed: action.faild
       });
     default:
       return state;
