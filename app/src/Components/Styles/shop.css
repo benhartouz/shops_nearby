@@ -1,5 +1,40 @@
 .card {
     float: left;
-    width: 400px;
+    width: 220px;
     margin-right: 20px;
+    margin-bottom: 20px;
+}
+.like{
+    background-color: green;
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    padding:  10px;
+    text-decoration:  none;
+    display: block;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin-right: 15px;
+}
+.dislike{
+    background-color: red;
+    color: #fff;
+    width: 100px;
+    text-align: center;
+    padding:  10px;
+    text-decoration:  none;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+.like:hover, .dislike:hover{
+    opacity: 0.5;
+}
+.like:active, .dislike:active{
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.action-container{
+    text-align: center;
+    justify-content: center;
 }

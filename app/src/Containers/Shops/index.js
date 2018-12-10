@@ -36,7 +36,7 @@ class Shops extends Component {
     }
     return this.state.shops.payload.data.map(shop => {
       return (
-        <Shop key={shop.id} />
+        <Shop key={shop.id} shop={shop} />
       );
     });
   };
