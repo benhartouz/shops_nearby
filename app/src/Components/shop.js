@@ -54,6 +54,7 @@ class Shop extends PureComponent {
   }
 
   handleLikeClick = () => {
+    console.log("id of shop" , this.shop._id)
     alert("handleLikeClick");
   } 
 
