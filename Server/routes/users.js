@@ -32,19 +32,23 @@ const users = (app, db) => {
 
   // Signup route
   app.post("/login", (req, res) => {
+
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+    
     let results = {
       code: "",
       message: "",
       data: {}
     };
 
-    console.log("req.body.username:",req.body.username);
+    //console.log("req.body.username:",req.body.username);
     const email = req.body.username;
     const password = req.body.password;
     if (email === undefined || password === undefined) {
       results.code = 400;
       results.message = "Usersname and password can not be empty";
       res.send(results);
+      res.end(results);
     }
    // const user = { email: req.body.username, password: req.body.password };
     const details = { "email" : email , "password" :  password };
