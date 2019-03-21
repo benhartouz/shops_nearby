@@ -6,9 +6,9 @@ import {
   createMuiTheme
 } from "@material-ui/core/styles";
 import Input from "@material-ui/core/Input";
+import TextField from "@material-ui/core/TextField";
 import InputBase from "@material-ui/core/InputBase";
 import InputLabel from "@material-ui/core/InputLabel";
-import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import purple from "@material-ui/core/colors/purple";
 import green from "@material-ui/core/colors/green";
@@ -99,58 +99,71 @@ class Login extends React.Component {
     classes = props.classes;
     this.state = {
       email: "",
-      password: ""
+      password: "",
+      loading: false
     };
   }
 
-  // Login using api 
+  // Login using api
   login = () => {
+    if (this.state.loading) return;
+    this.setState({
+      loading: true
+    });
     this.props.login(
-      () => {
-        console.log("Loging");
+      result => {
+        console.log(result);
+        if (result.code === 200) {
+        }
+        this.setState({
+          loading: false
+        });
       },
       {
-        email: this.state.email,
+        username: this.state.email,
         password: this.state.password
+      },
+      error => {
+        console.log(error);
+        this.setState({
+          loading: false
+        });
       }
     );
-    console.log("login");
   };
 
   render() {
     return (
       <div className={classes.container}>
         <FormControl className={classes.margin}>
-          <InputLabel
-            htmlFor="custom-css-standard-input"
-            classes={{
-              root: classes.cssLabel,
-              focused: classes.cssFocused
-            }}
-          >
-            Email
-          </InputLabel>
-          <Input
-            id="custom-css-standard-input"
-            classes={{
-              underline: classes.cssUnderline
+          <TextField
+            id="standard-password-input-username"
+            label="Username"
+            className={classes.textField}
+            type="text"
+            autoComplete="current-username"
+            margin="normal"
+            onChange={e => {
+              let value = e.target.value;
+              this.setState({
+                password: value
+              });
             }}
           />
         </FormControl>
         <FormControl className={classes.margin}>
-          <InputLabel
-            htmlFor="custom-css-standard-input"
-            classes={{
-              root: classes.cssLabel,
-              focused: classes.cssFocused
-            }}
-          >
-            Password
-          </InputLabel>
-          <Input
-            id="custom-css-standard-input"
-            classes={{
-              underline: classes.cssUnderline
+          <TextField
+            id="standard-password-input-password"
+            label="Password"
+            className={classes.textField}
+            type="password"
+            autoComplete="current-password"
+            margin="normal"
+            onChange={e => {
+              let value = e.target.value;
+              this.setState({
+                password: value
+              });
             }}
           />
         </FormControl>
@@ -160,7 +173,7 @@ class Login extends React.Component {
           className={classes.button}
           onClick={this.login}
         >
-          Login
+          {this.state.loading ? "Loading.." : "Login"}
         </Button>
       </div>
     );
