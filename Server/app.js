@@ -4,13 +4,14 @@ const bodyParser = require("body-parser");
 const db = require("./config/db");
 const cors = require("cors");
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
-// start server
+
+// Start server
 const port = 8080;
 
+// Connect to mongodb
 MongoClient.connect(db.url, (err, database) => {
     if (err) return console.log(err);
     let db = database.db("shope_nearby");
